@@ -1,0 +1,41 @@
+buildscript {
+    ext {
+        springBootVersion = "2.1.5.RELEASE"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    }
+}
+
+
+plugins {
+    id "java"
+}
+
+apply plugin: 'org.springframework.boot'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testCompile("org.mockito:mockito-core")
+    testCompile("junit:junit")
+}
+bootRun.environment([
+        "message":"hi from gradle",
+        "port":"123",
+        "memory.limit":"123",
+        "cf.instance.index":"123",
+        "cf.instance.addr":"123"
+])
+test.environment([
+        "message":"Hello from test"
+        ])
